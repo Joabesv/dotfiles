@@ -25,7 +25,7 @@ under `$HOME`. So `git/.config/git/config` becomes `~/.config/git/config`.
 | `fusuma`   | `~/.config/fusuma`              | Touchpad gesture shortcuts                       |
 | `zed`      | `~/.config/zed`                 | `settings.json`, `keymap.json`, `tasks.json`      |
 | `herdr`    | `~/.config/herdr`               | `config.toml` (UI prefs only)                    |
-| `opencode` | `~/.config/opencode`            | `opencode.json` (MCP servers), `cli.json` (theme) |
+| `opencode` | `~/.config/opencode`            | `opencode.json` (MCP servers)                     |
 | `claude`   | `~/.claude`                     | `settings.json` (sanitized — see below)          |
 
 Because every package shares `.config`, Stow *folds* that directory and links
@@ -115,7 +115,9 @@ inert anyway.
 - `functions/` holds one file per function, because fish autoloads by filename.
 - Generated files stay out: the herdr plugin and the Claude `SessionStart` hook
   are installed by herdr and overwritten on update, so they are not versioned
-  even though `settings.json` references the hook path.
+  even though `settings.json` references the hook path. `opencode/cli.json` is
+  excluded too — the TUI rewrites it on every launch, so stowing it would make
+  the repo dirty on each run. Set your theme there with `opencode theme`.
 
 ## Environment variables
 
