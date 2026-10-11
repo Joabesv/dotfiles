@@ -1,0 +1,19 @@
+{
+	"Vue Component": {
+    "prefix": "sfc",
+    "body": [
+      "<script setup lang=\"${1:ts}\">",
+      "import { ref } from 'vue';",
+			"$0",
+      "</script>",
+      "",
+      "<template>",
+      "\t<div></div>",
+      "</template>",
+      "",
+      "<style scoped lang=\"${2:css}\"></style>",
+      ""
+    ],
+    "description": "Vue single file component"
+  }
+}
