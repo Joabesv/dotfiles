@@ -54,6 +54,18 @@ stow --dir=~/dotfiles --target=~ --delete fish
 Edits: change the file wherever is more convenient. Because both paths are the
 same inode, there is nothing to copy or sync back.
 
+## Machine-specific settings
+
+`git/.config/git/config` contains a real `user.email`, so the repo is not
+anonymised by default. It is published as-is.
+
+`python.defaultInterpreterPath` is deliberately **not** set. It previously pointed
+at an absolute `~/.proto/bin/python`, which breaks on any other machine. VS Code
+resolves the interpreter from `PATH` on its own, and `proto` already puts its
+Python shims there. Note that the Python extension only honours this setting for
+a workspace before an interpreter has been selected, so a stale value is often
+inert anyway.
+
 ## Conventions
 
 - `conf.d/` files are prefixed with a numeric ordering (`10-`, `20-`, …) because

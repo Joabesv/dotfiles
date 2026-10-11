@@ -345,7 +345,6 @@
     }
   ],
   "github.copilot.selectedCompletionModel": "",
-  "python.defaultInterpreterPath": "/home/joabe/.proto/bin/python",
   "biome.suggestInstallingGlobally": false,
   "github.copilot.nextEditSuggestions.enabled": true,
   "redhat.telemetry.enabled": true,
