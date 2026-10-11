@@ -6,7 +6,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STOW_TARGET_DIR="${STOW_TARGET_DIR:-$HOME}"
-PACKAGES=(fish git gh ghostty btop bat vscode lazygit fusuma)
+PACKAGES=(fish git gh ghostty btop bat vscode lazygit fusuma zed herdr opencode claude)
 
 require_stow() {
     if command -v stow >/dev/null 2>&1; then

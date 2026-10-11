@@ -1,0 +1,201 @@
+{
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    }
+  },
+  "cli_default_open_behavior": "existing_window",
+  "edit_predictions": {
+    "provider": "copilot"
+  },
+  "project_panel": {
+    "dock": "left",
+    "default_width": 200,
+    "hide_root": true,
+    "auto_fold_dirs": false,
+    "starts_open": false,
+    "git_status": false,
+    "sticky_scroll": false,
+    "scrollbar": {
+      "show": "never",
+    },
+    "indent_guides": {
+      "show": "never",
+    },
+  },
+  "outline_panel": {
+    "default_width": 300,
+    "indent_guides": {
+      "show": "never",
+    },
+  },
+  "file_finder": {
+    "modal_max_width": "small",
+  },
+  "gutter": {
+    "min_line_number_digits": 0,
+    "folds": true,
+    "runnables": false,
+  },
+  "indent_guides": {
+    "enabled": false,
+  },
+  "cursor_blink": false,
+  "ui_font_family": ".ZedSans",
+  "ui_font_size": 16.0,
+  "buffer_font_weight": 400.0,
+  "buffer_font_family": "FiraCode Nerd Font Mono",
+  "buffer_font_size": 14.0,
+  "buffer_line_height": {
+    "custom": 2,
+  },
+  "agent_buffer_font_size": 12,
+  "multi_cursor_modifier": "alt",
+ "agent": {
+   "dock":"right",
+   "button": false,
+   "default_width": 300,
+   "notify_when_agent_waiting": "primary_screen"
+ },
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "auto"
+      },
+      "type": "registry"
+    },
+    "opencode": {
+      "default_config_options": {
+        "model": "opencode/deepseek-v4-flash-free"
+      },
+      "type": "registry"
+    }
+  },
+  "current_line_highlight": "none",
+  "show_whitespaces": "none",
+  "tab_size": 2,
+  "auto_indent": "syntax_aware",
+  "auto_indent_on_paste": false,
+  "icon_theme": "Symbols Icon Theme",
+  "inline_code_actions": false,
+  "format_on_save": "off",
+  "horizontal_scroll_margin": 1,
+  "vertical_scroll_margin": 1,
+  "when_closing_with_no_tabs": "keep_window_open",
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true,
+    },
+  },
+  "centered_layout": {
+    "right_padding": 0.15,
+    "left_padding": 0.15,
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha - No Italics",
+  },
+  "title_bar": {
+    "show_onboarding_banner": false,
+    "show_project_items": false,
+    "show_branch_name": false,
+    "show_user_menu": false,
+  },
+  "tab_bar": {
+    "show_tab_bar_buttons": false,
+  },
+  "toolbar": {
+    "quick_actions": false,
+  },
+  "theme_overrides": {
+    "Catppuccin Mocha - No Italics": {
+      "editor.document_highlight.read_background": "#00000000",
+      "editor.document_highlight.write_background": "#00000000",
+      "border.variant": "#15141C",
+      "border": "#15141C",
+      "title_bar.background": "#15141C",
+      "panel.background": "#15141C",
+      "panel.focused_border": "#4E466E",
+      "players": [
+        {
+          "cursor": "#BD9DFF",
+        },
+      ],
+      "syntax": {
+        "comment": {
+          "font_style": "italic",
+        },
+        "comment.doc": {
+          "font_style": "italic",
+        },
+      },
+    },
+  },
+  "languages": {
+    "TypeScript": {
+      "language_servers": [
+        "oxlint",
+        "oxfmt",
+        "typescript-ls",
+        "!vtls",
+        "!typescript-language-server"
+      ],
+      "format_on_save": "on",
+      "formatter": {
+        "language_server": {
+          "name": "oxfmt"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.oxc": true,
+        "source.organizeImports.oxc": true
+      }
+    },
+    "JavaScript": {
+       "language_servers": [
+        "oxlint",
+        "oxfmt",
+        "typescript-ls",
+        "!vtls",
+        "!typescript-language-server"
+      ],
+     "format_on_save": "on",
+      "formatter": {
+        "language_server": {
+          "name": "oxfmt"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.oxc": true,
+        "source.organizeImports.oxc": true
+      }
+    },
+    "Python": {
+      "language_servers": [
+        "ty",
+        "ruff"
+      ],
+      "formatter": {
+        "external": {
+          "command": "black",
+          "arguments": ["--line-length", "120", "-"]
+        },
+      },
+      "format_on_save": "on"
+    }
+  }
+}

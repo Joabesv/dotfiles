@@ -7,6 +7,7 @@ for path_entry in \
     "$HOME/go/bin" \
     "$HOME/.bun/bin" \
     "$HOME/.asdf/shims" \
+    "$HOME/.local/zed.app/bin" \
     "$HOME/.proto/bin"
     if test -d "$path_entry"
         fish_add_path --global --move "$path_entry"
