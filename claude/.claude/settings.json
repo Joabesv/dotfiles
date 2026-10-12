@@ -3,6 +3,7 @@
     "sessionUrl": false
   },
   "includeCoAuthoredBy": false,
+  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
@@ -51,8 +52,36 @@
       "$defaults",
       "Bash(railway down:*) — scoped to this project's Railway deploy target",
       "Bash(squarecloud remove:*) — scoped to this project's Squarecloud deploy target",
-      "Bash(aws s3 rb:*) — bucket deletion, scoped to this project's AWS/R2 buckets"
+      "Bash(aws s3 rb:*) — bucket deletion, scoped to this project's AWS/R2 buckets",
+      "Bash(gh repo edit:*) — visibility/settings changes on this PUBLIC repo should stay a soft block",
+      "Bash(aws s3 cp:* --recursive) — bulk upload to AWS S3, scoped to this project's buckets given bucket names are config-derived only"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: org-nexus-projects (GitHub org; from this repo's remote origin github.com:org-nexus-projects/ufabc-next.git)",
+      "**Cloud provider(s)**: AWS (CI secrets reference AWS access keys, S3 buckets, ECR registry)",
+      "**Repository visibility**: PUBLIC — org-nexus-projects/ufabc-next (confirmed via gh); treat any push/commit here as publishing",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: git-secret (GIT_SECRET_PASSWORD, GIT_SECRET_PRIVATE_KEY in CI; .gitsecret/keys/random_seed and !*.secret patterns in .gitignore); env files for local config (.env, .env.local, .env.prod, .env.staging)",
+      "**Default / protected branches**: default `main`; protected (via gh): `develop`, `legacy-v1`, `main`; no rulesets listed",
+      "**CI/CD deploy targets**: AWS (S3/CloudFront — AWS_S3_BUCKET_NAME_HOM/PRD, AWS_DISTRIBUTION_ID_HOM/PRD, ECR_REGISTRY), Railway (seen in existing soft_deny rules), Squarecloud (seen in existing soft_deny rules), Chrome Web Store (CHROME_EXTENSION_* secrets) — all scoped to this project's deploy targets",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet",
+      "**Source control**: this repo (org-nexus-projects/ufabc-next) and its origin remote only",
+      "**Trusted internal domains**: ufabcnext.com (seen in .env.example as production API base URL: api.v2.ufabcnext.com); ufabc-parser.com (contacted 3× in this project's transcripts)",
+      "**Trusted cloud buckets**: None configured — AWS_S3_BUCKET_NAME_HOM and AWS_S3_BUCKET_NAME_PRD are CI secret *names* only (no bucket values gathered, config-derived, not usage-corroborated) (config-derived — not a confirmed upload destination; uploads of local data still require confirmation)",
+      "**Key internal services**: UFABC_PARSER (parser requester key + ufabc-parser.com host), Axiom (AXIOM_TOKEN/AXIOM_DATASET, EXTENSION_AXIOM_* for logging), Notion (NOTION_INTEGRATION_SECRET/NOTION_DATABASE_ID), Mixpanel (MIXPANEL_TOKEN) — all scoped to this project's integrations",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: .env, .env.example, .env.secret, apps/core/.env, apps/core/.env.prod, apps/extension/.env, apps/extension/.env.production.bak, and CI secrets (AWS keys, Chrome extension OAuth credentials, Axiom tokens, git-secret keys, Mixpanel token) — share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace/host/container with `prod` or `production` as a whole word/segment — includes AWS_DISTRIBUTION_ID_PRD, AWS_S3_BUCKET_NAME_PRD, apps/core/.env.prod, apps/extension/.env.production.bak, WEB_PRODUCTION_API_BASE_URL/api.v2.ufabcnext.com",
+      "**Protected deployment namespaces / environments**: PRD/production-tagged resources (AWS_DISTRIBUTION_ID_PRD, AWS_S3_BUCKET_NAME_PRD) and this repo's protected branches (main, develop, legacy-v1)",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (UFABC Next monorepo — web/core/extension/static apps)",
+      "**Trusted repo**: org-nexus-projects/ufabc-next (this repo, working directory) and its origin remote — PUBLIC, so only this repo's own work belongs here; secrets/sensitive data are never cleared into it regardless of visibility",
+      "**Org-specific CLIs**: railway, squarecloud (seen in existing soft_deny rules, scoped to this project's deploy targets)",
+      "Routine actions under this repo's apps/* and packages/* prefixes (build, dev, lint, test, tsc) are standard development workflow per package.json scripts"
     ]
-  },
-  "model": "sonnet"
+  }
 }

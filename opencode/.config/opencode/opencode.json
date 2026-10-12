@@ -44,6 +44,12 @@
         "http://127.0.0.1:64343/mcp"
       ],
       "enabled": true
+    },
+    "axiom": {
+      "type": "remote",
+      "url": "https://mcp.axiom.co/mcp",
+      "enabled": true,
+      "oauth": {}
     }
   },
   "plugin": [

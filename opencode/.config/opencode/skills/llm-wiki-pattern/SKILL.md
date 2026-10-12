@@ -1,0 +1,1 @@
+/home/joabe/.claude/skills/llm-wiki-pattern/SKILL.md

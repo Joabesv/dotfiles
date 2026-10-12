@@ -25,8 +25,14 @@ under `$HOME`. So `git/.config/git/config` becomes `~/.config/git/config`.
 | `fusuma`   | `~/.config/fusuma`              | Touchpad gesture shortcuts                       |
 | `zed`      | `~/.config/zed`                 | `settings.json`, `keymap.json`, `tasks.json`      |
 | `herdr`    | `~/.config/herdr`               | `config.toml` (UI prefs only)                    |
-| `opencode` | `~/.config/opencode`            | `opencode.json` (MCP servers)                     |
+| `opencode` | `~/.config/opencode`            | `opencode.json` (MCP servers), `skills/`          |
 | `claude`   | `~/.claude`                     | `settings.json` (sanitized — see below)          |
+| `agents`   | `~/.agents`                     | `AGENTS.md`, `skills/`, `.skill-lock.json`        |
+
+The `agents` package is the important one: `~/.agents/` holds your code-style
+guide and all 58 agent skills, and `~/.config/opencode/AGENTS.md` plus
+`~/.claude/CLAUDE.md` are symlinks into it. Losing it costs you your
+instructions and every skill, so it is versioned here.
 
 Because every package shares `.config`, Stow *folds* that directory and links
 each package's own subtree into it rather than replacing `.config` wholesale.
@@ -126,6 +132,30 @@ Set these in your shell (not in this repo) if you use the corresponding feature:
 | Variable | Used by |
 | --- | --- |
 | `OPENCODE_POSTGRES_URL` | `opencode-postgres` plugin in `opencode.json` |
+
+## What this repo is not
+
+This is declarative config, not a backup. Reproducing a machine still requires
+reinstalling software and restoring data that is deliberately not here:
+
+- **Packages** are not tracked. Nothing records the ~330 manually-installed apt
+  packages or the 15 flatpaks, so a fresh machine means re-deriving them:
+  ```bash
+  apt-mark showmanual > apt.txt
+  flatpak list --app > flatpak.txt
+  code --list-extensions > vscode-extensions.txt
+  ```
+- **Editor extensions** are not tracked (VS Code and Zed keep their own cloud
+  settings backup).
+- **Runtime state** stays out by design: `fish_variables`, `opencode/cli.json`,
+  herdr logs and sockets, and the ~200 MB of Claude session history.
+- **Your projects in `~/dev/`** live in their own repositories and are backed up
+  separately.
+- **Version pins** are not tracked. There is no `.tool-versions`, so asdf
+  resolves `java` to whatever was current. `proto` manages the other runtimes.
+
+Secrets live in 1Password, never here — see [`secrets/1password.md`](secrets/1password.md)
+for which item each tool expects and the `op read` commands to restore them.
 
 ## Dependencies
 

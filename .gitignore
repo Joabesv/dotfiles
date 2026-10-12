@@ -23,9 +23,11 @@ opencode/.config/opencode/service.json
 # Local scratch space for stow conflicts / one-off symlink experiments.
 stow-local/
 
-# Local-only sanitized originals. See secrets/README.md.
+# Local-only sanitized originals. secrets/1password.md is documentation and is
+# committed on purpose; the sanitized Claude original is not.
 secrets/*
 !secrets/README.md
+!secrets/1password.md
 
 # OAuth tokens and authenticated sessions
 gh/.config/gh/hosts.yml          # GitHub CLI OAuth tokens
