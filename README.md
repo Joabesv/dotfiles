@@ -133,6 +133,30 @@ Set these in your shell (not in this repo) if you use the corresponding feature:
 | --- | --- |
 | `OPENCODE_POSTGRES_URL` | `opencode-postgres` plugin in `opencode.json` |
 
+## Agent tooling
+
+| Tool | Installed as | Notes |
+| --- | --- | --- |
+| [`2password`](https://github.com/kitlangton/2password) | `pnpm add -g 2password` | 1Password for coding agents: finds and injects secrets as `op://` references without exposing values. MIT. |
+| `skills` CLI | `pnpm dlx skills` | Installs and updates the agent skills in `~/.agents/skills`. |
+
+Both are recorded in `~/.agents/.skill-lock.json` with their source repo and
+folder hash, so `pnpm dlx skills update -g` can refresh them later:
+
+```bash
+pnpm dlx skills update -g      # refresh every global skill
+2password doctor               # versions and setup; never prompts
+```
+
+Because `~/.agents/skills` is a symlink into this repo, newly installed skills
+are versioned the moment they land. Verify one has no credentials before
+committing it — third-party skills run with full agent permissions.
+
+Prefer the `2password` CLI over raw `op`: it batches a task into one approval
+prompt, keeps values out of argv and out of the agent's context, and can inject
+them into a child process without plaintext ever touching disk. See
+[`secrets/1password.md`](secrets/1password.md).
+
 ## What this repo is not
 
 This is declarative config, not a backup. Reproducing a machine still requires
